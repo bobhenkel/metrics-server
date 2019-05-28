@@ -30,6 +30,14 @@ spec:
       containers:
       - name: metrics-server
         image: k8s.gcr.io/metrics-server-amd64:v0.3.3
+              containers:
+      - command:
+        - /metrics-server
+        - --logtostderr
+        - --kubelet-preferred-address-types=InternalIP
+        - --kubelet-insecure-tls
+        - --metric-resolution=10s
+        image: k8s.gcr.io/metrics-server-amd64:v0.3.3
         imagePullPolicy: Always
         volumeMounts:
         - name: tmp-dir
